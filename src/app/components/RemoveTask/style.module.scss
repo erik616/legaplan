@@ -1,0 +1,31 @@
+@import "../../styles/variables.module.scss";
+@import "../../styles/mixins";
+
+.formCreate {
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    h2 {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .buttons {
+        display: flex;
+        width: 100%;
+        gap: 16px;
+    }
+}
+
+@include mobile {
+    .buttons {
+        flex-wrap: wrap;
+    }
+}

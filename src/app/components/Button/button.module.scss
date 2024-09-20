@@ -1,0 +1,31 @@
+@import "../../styles/variables.module.scss";
+
+.button {
+    max-width: 450px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 24px;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.default {
+    background-color: $primary-gray;
+    color: #000;
+}
+
+.primary {
+    background: linear-gradient(90deg, $blue 0%, $secondary-blue 68.65%);
+    color: #fff;
+}
+
+.secondary {
+    background: linear-gradient(90deg, #D30707 0%, #F05353 68.65%);
+    color: #fff;
+}

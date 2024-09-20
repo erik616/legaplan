@@ -1,0 +1,57 @@
+@import "./variables.module.scss";
+@import "../styles/mixins";
+
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px 24px;
+
+    header {
+        width: 90%;
+        margin-bottom: 40px;
+    }
+
+}
+
+.nav {
+    width: 100%;
+    margin: 24px auto 0;
+    border-bottom: 1px solid $gray;
+    padding-bottom: 24px;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        // width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+
+        li h1 {
+            font-weight: 500;
+            font-size: 29px;
+        }
+
+        li p {
+            font-size: 19px;
+            color: $black;
+
+            ::first-letter {
+                text-transform: capitalize;
+            }
+        }
+
+        li p:first-letter {
+            text-transform: capitalize;
+        }
+    }
+}
+
+@include mobile(){
+    .nav ul li h1{
+        font-size: 19px;
+    }
+}

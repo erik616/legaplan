@@ -1,95 +1,66 @@
+'use client'
+
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.scss"
+import logo from "@/app/assets/img/logo.svg"
+import { useContext, useState } from "react";
+import { Button } from "./components/Button";
+import { Card } from "./components/Card";
+import { ListTask } from "./components/ListTask";
+import { AddTask } from "./components/AddTask";
+import { MyContext } from "./context/context";
+
+export interface DataProps {
+  id: string
+  name: string
+  active: boolean
+}
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [show, setShow] = useState<boolean>(false)
+  const { data } = useContext(MyContext)
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const day = createDate();
+
+  function handleModal() {
+    setShow(true)
+  }
+
+  return (
+    <section className={styles.page}>
+      <header>
+        <nav className={styles.nav}>
+          <ul>
+            <li>
+              <Image src={logo} alt="logo" height={36} width={150} />
+            </li>
+            <li>
+              <h1>Bem Vindo de volta, Erik!</h1>
+            </li>
+            <li>
+              <p>{day}</p>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <Card>
+        <ListTask data={data} />
+      </Card>
+
+      <Button text="Adicionar nova tarefa" type="primary" action={handleModal} />
+
+      {show && <AddTask setShow={setShow} show={show} />}
+    </section>
   );
+}
+
+
+function createDate() {
+  const data = new Date()
+  const day = data.toLocaleDateString('pt-br', {
+    weekday: "long", year: "numeric", month: "long", day: "numeric"
+  }).replace("-feira", "")
+  return day
+
 }

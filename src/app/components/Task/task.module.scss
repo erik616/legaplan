@@ -1,0 +1,114 @@
+@import "../../styles/variables.module.scss";
+
+.container {
+    border: 1px dashed $gray;
+    border-radius: 8px;
+    display: flex;
+    padding: 16px;
+    justify-content: space-between;
+
+    label {
+        font-size: 19px;
+
+        input:checked+span {
+            text-decoration: line-through;
+            color: $black;
+        }
+    }
+
+    img {
+        cursor: pointer;
+    }
+
+    .title {
+        margin-left: 40px;
+    }
+
+    .check {
+        display: block;
+        position: relative;
+        cursor: pointer;
+
+        input {
+            position: absolute;
+            opacity: 0;
+        }
+    }
+
+    .checkbox {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        border: 1px solid $four-gray;
+        border-radius: 4px;
+    }
+
+    label {
+        input:checked~.checkbox {
+            background: $third-blue;
+            border-color: $primary-blue;
+        }
+
+        .checkbox::after {
+            position: absolute;
+            content: '';
+            display: none;
+        }
+
+        .checkbox::after {
+            top: 4.5px;
+            left: 50%;
+            width: 12px;
+            height: 8.5px;
+            border: solid $primary-blue;
+            border-width: 0 0 1.5px 1.5px;
+
+            transform: translateX(-50%) rotate(-45deg);
+            -webkit-transform: translateX(-50%) rotate(-45deg);
+            -ms-transform: translateX(-50%) rotate(-45deg);
+        }
+
+        input:checked~.checkbox:after {
+            display: block;
+        }
+    }
+
+
+
+    // &:hover{
+    //     background: $third-gray;
+    //     border: 1px solid $third-gray;
+    //     cursor: pointer;
+    // }
+
+    // .status{
+    //     display: flex;
+    //     gap: 16px;
+    //     justify-content: center;
+
+    //     input{
+    //         width: 24px;
+    //         height: 24px;
+    //         border: 1px solid $gray;
+    //         border-radius: 4px;
+
+    //         &:checked{
+
+    //         }
+    //     }
+
+
+    //     label {
+    //         font-size: 19px;
+    //     }
+
+    //     .checked{
+    //         text-decoration: line-through;
+    //         color: $black;
+    //     }
+    // }
+
+
+}
